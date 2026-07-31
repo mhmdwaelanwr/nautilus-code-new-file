@@ -18,7 +18,7 @@ curl -sSL https://raw.githubusercontent.com/mhmdwaelanwr/nautilus-code-new-file/
 ## 🗑️ Uninstall
 
 ```bash
-rm ~/.local/share/nautilus-python/extensions/custom_new_file.py
+rm ~/.local/share/nautilus-python/extensions/nautilus-code-new-file.py
 nautilus -q
 ```
 
