@@ -7,7 +7,7 @@ A smart Nautilus extension for Ubuntu/Debian that adds a categorized right-click
 Run this one-liner in your terminal to install it instantly:
 
 bash
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/nautilus-code-new-file/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/mhmdwaelanwr/nautilus-code-new-file/main/install.sh | bash
 
 
 *(Make sure to replace YOUR_USERNAME with your actual GitHub username).*
