@@ -3,7 +3,7 @@
 A smart Nautilus extension for Ubuntu/Debian that adds a categorized right-click menu to quickly create developer files with a custom naming prompt.
 
 <p align="center">
-  <img src="assets/demo.gif" alt="Extension Demo" width="100%">
+  <img src="assets/demo.gif" alt="Extension Demo" width="50%">
 </p>
 
 ## 🚀 Quick Installation
