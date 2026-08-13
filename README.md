@@ -1,8 +1,8 @@
-# Nautilus Code New File 🛠️
+# Nautilus Code New File
 
 <p align="center">
   <strong>Create developer files directly from the Nautilus right-click menu.</strong><br>
-  A lightweight Python extension for Ubuntu/Debian that adds categorized file templates with a quick naming prompt.
+  A lightweight Python extension for Linux that adds categorized file templates with a quick naming prompt.
 </p>
 
 <p align="center">
@@ -11,6 +11,7 @@
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/github/license/mhmdwaelanwr/nautilus-code-new-file?style=flat-square"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-Nautilus%20Extension-blue?style=flat-square">
   <img alt="Linux" src="https://img.shields.io/badge/platform-Linux-lightgrey?style=flat-square">
+  <a href="https://github.com/mhmdwaelanwr/nautilus-code-new-file/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/mhmdwaelanwr/nautilus-code-new-file/ci.yml?branch=main&style=flat-square&label=CI"></a>
 </p>
 
 <p align="center">
@@ -21,16 +22,19 @@
 
 Creating a new source file on Linux often means opening a terminal or creating a generic blank file and renaming it manually. **Nautilus Code New File** puts common developer file types directly in the folder context menu, grouped by category, then lets you choose the final filename through Zenity.
 
-## ✨ Features
+## Features
 
 - Native Nautilus right-click integration.
 - Categorized developer file menu instead of one long list.
-- Custom filename prompt before creation.
-- Common frontend, backend, mobile, scripting, configuration and DevOps file types.
-- Lightweight: one Python extension file, with no background service.
-- Simple installation and clean uninstall process.
+- Skeleton templates for common file types (React TSX, HTML, Python, Dockerfile, and more).
+- Blank file option for types without a template.
+- Custom filename prompt with validation and error feedback.
+- Prevents dangerous filenames (path traversal, empty names).
+- Zenity success/error dialogs for clear feedback.
+- Lightweight: one entry point + small modular source package.
+- CI pipeline: Python lint, ShellCheck, Ruff, and unit tests on every PR.
 
-## 🚀 Quick install
+## Quick install
 
 Download the installer, review it, then run it:
 
@@ -52,13 +56,14 @@ The installer installs `python3-nautilus`, `zenity` and `curl`, then copies the 
 
 ```text
 ~/.local/share/nautilus-python/extensions/nautilus-code-new-file.py
+~/.local/share/nautilus-python/extensions/nautilus_code_new_file/
 ```
 
 After installation, reopen **Files**, right-click inside a folder, and choose **New Code File...**.
 
-## 📦 Included file types
+## Included file types
 
-| Category | Examples |
+| Category | Templates |
 | --- | --- |
 | Documentation & Notes | Markdown, Text |
 | Web & Frontend | HTML, CSS, JavaScript, TypeScript, JSX, TSX |
@@ -68,25 +73,30 @@ After installation, reopen **Files**, right-click inside a folder, and choose **
 | Data & Configs | JSON, YAML, TOML, XML, `.env`, `.gitignore` |
 | DevOps & Containers | Dockerfile, Docker Compose, Makefile |
 
-## 🧩 Requirements
+## Requirements
 
 - Linux desktop using **Nautilus / GNOME Files**.
 - Debian/Ubuntu-based distribution for the bundled installer.
 - `python3-nautilus`.
 - `zenity`.
 
-Other distributions can install equivalent dependencies with their package manager and copy `nautilus-code-new-file.py` into the Nautilus extensions directory manually.
+Other distributions can install equivalent dependencies with their package manager and copy the files manually.
 
-## 🗑️ Uninstall
+## Uninstall
+
+```bash
+bash uninstall.sh
+```
+
+Or manually:
 
 ```bash
 rm -f ~/.local/share/nautilus-python/extensions/nautilus-code-new-file.py
+rm -rf ~/.local/share/nautilus-python/extensions/nautilus_code_new_file
 nautilus -q
 ```
 
-Then reopen Files/Nautilus.
-
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 If the menu does not appear after installation, restart Nautilus:
 
@@ -106,16 +116,16 @@ Verify the Python file has valid syntax:
 python3 -m py_compile ~/.local/share/nautilus-python/extensions/nautilus-code-new-file.py
 ```
 
-## 📌 Releases
+## Releases
 
-The first stable release is **v1.0.0**. See the [Releases](https://github.com/mhmdwaelanwr/nautilus-code-new-file/releases) page for source snapshots and release notes.
+See the [Releases](https://github.com/mhmdwaelanwr/nautilus-code-new-file/releases) page for source snapshots and release notes.
 
-## 🤝 Contributing
+## Contributing
 
 Issues, fixes and new file-template ideas are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and pull request checklist.
 
 If this extension saves you time, starring the repository helps other Linux developers discover it.
 
-## 📄 License
+## License
 
 Released under the [MIT License](LICENSE).
