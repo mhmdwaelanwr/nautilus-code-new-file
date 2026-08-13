@@ -25,6 +25,7 @@ def _zenity_error(message: str) -> None:
     subprocess.run(
         ["zenity", "--error", "--title=Error", f"--text={message}", "--width=360"],
         capture_output=True,
+        check=False,
     )
 
 
@@ -33,6 +34,7 @@ def _zenity_info(message: str) -> None:
     subprocess.run(
         ["zenity", "--info", "--title=Success", f"--text={message}", "--width=360"],
         capture_output=True,
+        check=False,
     )
 
 
@@ -49,7 +51,7 @@ def create_file(folder_path: str, default_name: str) -> bool:
         f"--entry-text={default_name}",
     ]
 
-    res = subprocess.run(cmd, capture_output=True, text=True)
+    res = subprocess.run(cmd, capture_output=True, text=True, check=False)
 
     # User pressed Cancel or closed the dialog.
     if res.returncode != 0:
@@ -64,7 +66,9 @@ def create_file(folder_path: str, default_name: str) -> bool:
 
     # Length check.
     if len(filename) > _MAX_NAME_LEN:
-        _zenity_error(f"Filename too long ({len(filename)} chars, max {_MAX_NAME_LEN}).")
+        _zenity_error(
+            f"Filename too long ({len(filename)} chars, max {_MAX_NAME_LEN})."
+        )
         return False
 
     # Path-traversal check.

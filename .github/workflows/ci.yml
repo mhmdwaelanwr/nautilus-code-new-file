@@ -20,7 +20,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install tools
-        run: pip install ruff
+        run: pip install ruff pytest
 
       - name: Python syntax check
         run: python3 -m py_compile nautilus-code-new-file.py
@@ -58,4 +58,4 @@ jobs:
           python-version: "3.12"
 
       - name: Run unit tests
-        run: python3 -m pytest tests/ -v
+        run: pip install pytest && python3 -m pytest tests/ -v

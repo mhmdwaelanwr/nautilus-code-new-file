@@ -11,7 +11,7 @@ from .templates import CATEGORIES
 class CustomNewFileExtension(GObject.GObject, Nautilus.MenuProvider):
     """Provides a right-click menu to create developer files."""
 
-    def get_background_items(self, *args):  # noqa: ANN002, ANN201
+    def get_background_items(self, *args):
         folder = args[-1]
 
         parent_menu = Nautilus.MenuItem(

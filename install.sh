@@ -18,7 +18,7 @@ sudo apt-get install -y python3-nautilus zenity curl
 
 mkdir -p "$TARGET_DIR"
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || true)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 LOCAL_EXTENSION="${SCRIPT_DIR}/nautilus-code-new-file.py"
 LOCAL_SRC="${SCRIPT_DIR}/src"
 

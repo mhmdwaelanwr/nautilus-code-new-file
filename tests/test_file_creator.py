@@ -12,8 +12,8 @@ import pytest
 # Adjust path so we can import src modules without installing the package.
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from src.file_creator import _is_safe_name, create_file  # noqa: E402
-from src.templates import CATEGORIES, TEMPLATES, get_template  # noqa: E402
+from src.file_creator import _is_safe_name, create_file
+from src.templates import CATEGORIES, TEMPLATES, get_template
 
 # ---------------------------------------------------------------------------
 # Template tests
@@ -24,7 +24,7 @@ class TestTemplates:
     def test_all_category_files_have_template_or_are_blank(self):
         """default_name must have a template or be in the blank allowlist."""
         blank_ok = {".env", "notes.txt", "config.toml"}
-        for _cat, files in CATEGORIES.items():
+        for files in CATEGORIES.values():
             for _label, default_name in files:
                 tpl = get_template(default_name)
                 assert tpl is not None or default_name in blank_ok, (
@@ -120,7 +120,9 @@ class TestCreateFile:
     def test_traversal_blocked(self, monkeypatch, tmp_path):
         monkeypatch.setattr(
             "src.file_creator.subprocess.run",
-            lambda *a, **kw: type("R", (), {"returncode": 0, "stdout": "../evil.txt"})(),
+            lambda *a, **kw: type(
+                "R", (), {"returncode": 0, "stdout": "../evil.txt"}
+            )(),
         )
         result = create_file(str(tmp_path), "file.txt")
         assert result is False
@@ -130,7 +132,9 @@ class TestCreateFile:
         (tmp_path / "already.txt").touch()
         monkeypatch.setattr(
             "src.file_creator.subprocess.run",
-            lambda *a, **kw: type("R", (), {"returncode": 0, "stdout": "already.txt"})(),
+            lambda *a, **kw: type(
+                "R", (), {"returncode": 0, "stdout": "already.txt"}
+            )(),
         )
         result = create_file(str(tmp_path), "file.txt")
         assert result is False

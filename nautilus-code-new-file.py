@@ -14,4 +14,4 @@ if _SRC not in sys.path:
     sys.path.insert(0, _SRC)
 
 # Re-export the extension class so Nautilus can discover it.
-from extension import CustomNewFileExtension  # noqa: E402, F401
+from extension import CustomNewFileExtension  # noqa: F401
