@@ -7,57 +7,38 @@ Thanks for helping improve the project.
 1. Fork or clone the repository.
 2. Create a focused branch for your change.
 3. Keep changes small and easy to review.
-
-## Project structure
-
-```
-nautilus-code-new-file.py   # Nautilus entry point (thin wrapper)
-src/
-  __init__.py
-  extension.py              # Nautilus MenuProvider class
-  templates.py              # Template content and category definitions
-  file_creator.py           # File creation logic with error handling
-tests/
-  test_file_creator.py      # Unit tests (no Nautilus required)
-  test_imports.py           # Compilation smoke tests
-install.sh                  # Installer
-uninstall.sh                # Uninstaller
-```
-
-## Validation
-
-Before opening a PR, run these checks:
+4. Validate Python syntax with:
 
 ```bash
-# Python syntax
 python3 -m py_compile nautilus-code-new-file.py
-python3 -m py_compile src/extension.py src/templates.py src/file_creator.py
+python3 -m py_compile src/*.py
+```
 
-# Shell syntax + lint
+5. Validate the installer with:
+
+```bash
 bash -n install.sh
 bash -n uninstall.sh
-shellcheck install.sh
-shellcheck uninstall.sh
-
-# Unit tests
-python3 -m pytest tests/ -v
-
-# Ruff lint
-ruff check src/ tests/ nautilus-code-new-file.py
-ruff format --check src/ tests/ nautilus-code-new-file.py
 ```
+
+6. Run tests:
+
+```bash
+python3 -m pytest tests/ -v
+```
+
+7. Test the extension in Nautilus before opening a pull request when your change affects menu behavior.
 
 ## Adding a new file type
 
-1. Add the menu entry in `src/templates.py` under the appropriate category.
-2. Optionally add a skeleton template in the `TEMPLATES` dict.
-3. Add the default filename to the blank allowlist in `tests/test_file_creator.py` if no template is needed.
+File templates live in `src/templates.py`. Add a menu entry in `CATEGORIES` and optionally a skeleton template in `TEMPLATES`.
 
 ## Pull request checklist
 
 - Explain what changed and why.
 - Keep unrelated refactors out of the same pull request.
-- Confirm all validation steps above pass.
+- Confirm `python3 -m py_compile` and `bash -n` pass.
+- Confirm `python3 -m pytest tests/ -v` passes.
 - Update the README when behavior, installation, or supported file types change.
 
 ## Bug reports
